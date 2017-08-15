@@ -50,6 +50,15 @@ public class Sql2oAnimalDao implements AnimalDao {
 
     @Override
     public void updateAnimal(int id, String name) {
+        String sql = "UPDATE animals SET (name) = (:name) WHERE id=:id";
+        try(Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .executeUpdate();
+        } catch(Sql2oException ex) {
+            System.out.println(ex);
+        }
 
     }
 
@@ -74,6 +83,16 @@ public class Sql2oAnimalDao implements AnimalDao {
                    .executeUpdate();
            } catch (Sql2oException ex) {
             System.out.println(ex);
+        }
+    }
+
+    @Override
+    public Animal findById(int id) {
+        String sql = "SELECT * FROM animals WHERE id=:id";
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Animal.class);
         }
     }
 }

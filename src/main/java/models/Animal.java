@@ -47,4 +47,31 @@ public class Animal {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Animal animal = (Animal) o;
+
+        if (id != animal.id) return false;
+        if (!name.equals(animal.name)) return false;
+        if (gender != null ? !gender.equals(animal.gender) : animal.gender != null) return false;
+        if (admittanceDate != null ? !admittanceDate.equals(animal.admittanceDate) : animal.admittanceDate != null)
+            return false;
+        if (!type.equals(animal.type)) return false;
+        return breed.equals(animal.breed);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (admittanceDate != null ? admittanceDate.hashCode() : 0);
+        result = 31 * result + type.hashCode();
+        result = 31 * result + breed.hashCode();
+        return result;
+    }
 }

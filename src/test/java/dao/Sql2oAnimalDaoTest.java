@@ -51,6 +51,8 @@ public class Sql2oAnimalDaoTest {
         Animal animal = createAnimal();
         animalDao.add(animal);
         animalDao.updateAnimal(animal.getId(), "Doggy");
+        Animal updatedAnimal = animalDao.findById(animal.getId());
+        assertEquals("Doggy", updatedAnimal.getName());
 
     }
 
@@ -74,6 +76,14 @@ public class Sql2oAnimalDaoTest {
         animalDao.add(animal2);
         animalDao.deleteAllAnimals();
         assertEquals(0, animalDao.getAllAnimals().size());
+    }
+
+    @Test
+    public void findById() throws Exception {
+        Animal animal = createAnimal();
+        animalDao.add(animal);
+        Animal foundAnimal = animalDao.findById(animal.getId());
+        assertEquals(animal, foundAnimal);
     }
 
 }

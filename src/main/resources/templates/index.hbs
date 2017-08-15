@@ -1,0 +1,33 @@
+<title>{{#partial "title"}}Animal Shelter{{/partial}}</title>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Welcome to Kate's and Collin's Adoption Shelter.<br>
+            <small>Find the pet of your dreams.</small></h1>
+    </div>
+
+
+        {{#partial "content"}}
+            {{#if animals}}
+                <h3>Pets:</h3>
+            <ul>
+                {{#each animals}}
+                    <li>{{type }} {{name}} of {{breed }} breed got to the shelter on {{admittanceDate}}. The gender: {{gender}}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <p>No animals are available for adoption. Please check back later</p>
+
+            {{/if}}
+        {{/partial}}
+</div>
+<!--end main template-->
+{{#partial "footer"}}
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><a href="/animals/delete">DELETE all Animals :(</a></p>
+        </div>
+    </footer>
+{{/partial}}
+
+    {{> layout.hbs}}

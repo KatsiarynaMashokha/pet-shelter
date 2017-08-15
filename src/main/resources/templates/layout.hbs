@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}Animal shelter{{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/animals/new">Add a New Animal for Adoption</a></li>
+</ul>
+
+<div class="container">
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+    </div>
+</div>
+
+{{#block "footer"}}
+    <footer class="footer">
+        <div class="container">
+        </div>
+    </footer>
+    </body>
+    </html>
+{{/block}}
