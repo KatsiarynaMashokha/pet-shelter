@@ -48,14 +48,16 @@ public class App {
             String date = request.queryParams("date");
             Animal animal = new Animal(petName, petGender, date, petType, petBreed);
             animalDao.add(animal);
-            model.put("newAnimal", animal);
+            List<Animal> animalList = animalDao.getAllAnimals();
+            model.put("animals", animalList);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-
-
-
-
-
+        // delete all animals
+        get("/animals/delete", (request, response) ->   {
+            Map<String, Object> model = new HashMap<>();
+            animalDao.deleteAllAnimals();
+            return new ModelAndView(model,"index.hbs");
+        },   new HandlebarsTemplateEngine());
     }
 }

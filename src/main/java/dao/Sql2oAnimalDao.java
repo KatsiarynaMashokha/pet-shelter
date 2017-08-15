@@ -79,7 +79,7 @@ public class Sql2oAnimalDao implements AnimalDao {
     @Override
     public void deleteAllAnimals() {
         try(Connection conn = sql2o.open()) {
-            conn.createQuery("DELETE FROM animals")
+            conn.createQuery("DELETE from animals")
                    .executeUpdate();
            } catch (Sql2oException ex) {
             System.out.println(ex);
